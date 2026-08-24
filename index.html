@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reborn新生留学 · 高阶词汇21天</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* -------- 你的原有样式全部保留，这里省略，请直接复制到你的 index.html 里替换即可 -------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+            background-color: #1A1A1A;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        body.light-mode {
+            background-color: #FFFFFF;
+            color: #1A1A1A;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            min-height: 600px;
+            background-color: #1A1A1A;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px 30px 30px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        body.light-mode .container {
+            background-color: #FFFFFF;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            gap: 12px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .hexagon-icon {
+            position: relative;
+            width: 60px;
+            height: 70px;
+            flex-shrink: 0;
+        }
+        .hexagon {
+            position: absolute;
+            width: 60px;
+            height: 70px;
+            background-color: transparent;
+            border: 2px solid #FFFFFF;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            animation: hexagonGroupAppear 3.5s ease-in-out infinite;
+            opacity: 0;
+        }
+        body.light-mode .hexagon {
+            border-color: #1A1A1A;
+        }
+        .hexagon:nth-child(1) { top: 0; left: 0; animation-delay: 0s; }
+        .hexagon:nth-child(2) { top: 10px; left: 35px; transform: scale(0.85); opacity: 0.8; animation-delay: 0s; }
+        .hexagon:nth-child(3) { top: 10px; left: -35px; transform: scale(0.85); opacity: 0.8; animation-delay: 0s; }
+        .hexagon:nth-child(4) { top: 40px; left: 18px; transform: scale(0.7); opacity: 0.6; animation-delay: 0s; }
+        .hexagon:nth-child(5) { top: 40px; left: -18px; transform: scale(0.7); opacity: 0.6; animation-delay: 0s; }
+        @keyframes hexagonGroupAppear {
+            0% { opacity: 0; transform: scale(0.8) rotate(10deg); }
+            20% { opacity: 1; transform: scale(1) rotate(0); }
+            80% { opacity: 1; transform: scale(1) rotate(0); }
+            100% { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+        }
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+        .logo-text-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .logo-text-sub {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        body.light-mode .logo-text-brand,
+        body.light-mode .logo-text-sub {
+            color: #1A1A1A;
+        }
+        @media (max-width: 600px) {
+            .logo-text-brand { font-size: 1.4rem; }
+            .logo-text-sub { font-size: 1.4rem; }
+            .hexagon-icon { transform: scale(0.9); }
+        }
+        @media (max-width: 480px) {
+            .logo-text-brand { font-size: 1.2rem; }
+            .logo-text-sub { font-size: 1.2rem; }
+            .hexagon-icon { transform: scale(0.8); }
+            .logo-container { gap: 8px; }
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #CCCCCC;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 6px;
+            transition: all 0.3s ease;
+        }
+        body.light-mode .subtitle {
+            color: #666666;
+        }
+        .info-block {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-top: 8px;
+        }
+        .copyright {
+            font-weight: 300;
+            font-size: 1.1rem;
+            color: #CCCCCC;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        body.light-mode .copyright {
+            color: #666666;
+        }
+        .date-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .date-container {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .date-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 50px;
+        }
+        .date-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+        body.light-mode .date-value {
+            color: #1A1A1A;
+        }
+        .date-label {
+            font-size: 0.8rem;
+            color: #999999;
+            transition: all 0.3s ease;
+            margin-top: 4px;
+        }
+        body.light-mode .date-label {
+            color: #666666;
+        }
+        .weekday {
+            font-size: 1rem;
+            color: #CCCCCC;
+            font-weight: 400;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+        body.light-mode .weekday {
+            color: #666666;
+        }
+        .for-every-reborner {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #CCCCCC;
+            transition: all 0.3s ease;
+            margin-top: 2px;
+        }
+        body.light-mode .for-every-reborner {
+            color: #666666;
+        }
+        .button-section {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 30px;
+        }
+        .button {
+            width: 100%;
+            background-color: #262626;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 20px;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 2px;
+            text-decoration: none;
+            outline: none;
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        body.light-mode .button {
+            background-color: #F0F0F0;
+            color: #1A1A1A;
+        }
+        .button:hover {
+            background-color: #2E2E2E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+        }
+        body.light-mode .button:hover {
+            background-color: #E5E5E5;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-weight: 600;
+        }
+        .button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .footer {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #262626;
+            font-size: 0.7rem;
+            color: #666666;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 8px;
+        }
+        body.light-mode .footer {
+            border-top-color: #E0E0E0;
+        }
+        .footer .tiny-credit {
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+        .theme-slider-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .theme-slider {
+            width: 60px;
+            height: 30px;
+            background-color: #262626;
+            border-radius: 15px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        body.light-mode .theme-slider {
+            background-color: #E0E0;
+        }
+        .slider-dot {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        body.light-mode .slider-dot {
+            background-color: #1A1A1A;
+            left: 33px;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px; min-height: 500px; }
+            .button-section { max-width: 100%; }
+            .date-value { font-size: 1.6rem; }
+            .theme-slider-container { top: 15px; right: 15px; }
+        }
+        @media (max-width: 480px) {
+            .logo-container { gap: 6px; }
+            .hexagon-icon { transform: scale(0.8); }
+            .button { padding: 14px 16px; font-size: 1.0rem; }
+            .date-value { font-size: 1.4rem; }
+            .theme-slider-container { top: 10px; right: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 主题切换滑块 -->
+        <div class="theme-slider-container">
+            <div class="theme-slider" id="themeSlider">
+                <div class="slider-dot"></div>
+            </div>
+        </div>
+        
+        <!-- Logo区域 -->
+        <div class="logo-section">
+            <div class="logo-container">
+                <div class="hexagon-icon">
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                    <div class="hexagon"></div>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-text-brand" id="brandText">Reborn新生留学</span>
+                    <span class="logo-text-sub" id="subText">高阶核心词汇21天</span>
+                </div>
+            </div>
+            <div class="subtitle">Veni • Vidi • Vici</div>
+        </div>
+        
+        <!-- 日期信息 -->
+        <div class="info-block">
+            <div class="copyright" id="copyright">天天进步，每日新生</div>
+            <div class="date-section">
+                <div class="date-container">
+                    <div class="date-item">
+                        <div class="date-value" id="year">2026</div>
+                        <div class="date-label">年</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-value" id="month">01</div>
+                        <div class="date-label">月</div>
+                    </div>
+                    <div class="date-item">
+                        <div class="date-value" id="day">15</div>
+                        <div class="date-label">日</div>
+                    </div>
+                </div>
+                <div class="weekday" id="weekday">星期三</div>
+                <div class="for-every-reborner">FOR EVERY REBORNER</div>
+            </div>
+        </div>
+        
+        <!-- Day按钮容器 -->
+        <div class="button-section" id="buttonSection"></div>
+        
+        <!-- 底部 -->
+        <div class="footer">
+            <div class="tiny-credit">⏤</div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // 登录校验：只在这里检查，子页面不需要再加了
+        // ============================================================
+        (function() {
+            // 检查是否从登录页带参数过来，或者 sessionStorage 里有标记
+            const urlParams = new URLSearchParams(window.location.search);
+            const loginParam = urlParams.get('login');
+            
+            if (loginParam === 'ok') {
+                // 从登录页跳转过来，已经登录成功，存入 sessionStorage 做标记
+                sessionStorage.setItem('loginOk', 'yes');
+            }
+            
+            // 如果 sessionStorage 里没有登录标记，跳回登录页
+            if (!sessionStorage.getItem('loginOk')) {
+                window.location.replace('login.html');
+            }
+        })();
+
+        // ============================================================
+        // 其余所有 JS 逻辑（日期、主题、按钮跳转）
+        // ============================================================
+        function getCurrentDate() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const weekdays = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const weekday = weekdays[now.getDay()];
+            return { year, month, day, weekday };
+        }
+
+        function updateDateDisplay() {
+            const date = getCurrentDate();
+            document.getElementById('year').textContent = date.year;
+            document.getElementById('month').textContent = date.month;
+            document.getElementById('day').textContent = date.day;
+            document.getElementById('weekday').textContent = date.weekday;
+        }
+
+        function setupThemeToggle() {
+            const themeSlider = document.getElementById('themeSlider');
+            const body = document.body;
+            themeSlider.addEventListener('click', () => {
+                body.classList.toggle('light-mode');
+                localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
+            });
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') body.classList.add('light-mode');
+        }
+
+        function setupDayButtons() {
+            const section = document.getElementById('buttonSection');
+            section.innerHTML = '';
+            for (let i = 1; i <= 21; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'button';
+                btn.textContent = `Day ${i}`;
+                // 跳转时带上 ?login=ok 参数，子页面不需要再检查登录
+                const fileName = String(i).padStart(2, '0') + '.html?login=ok';
+                btn.dataset.url = fileName;
+
+                btn.addEventListener('click', function(e) {
+                    // 水波纹动画
+                    const rect = this.getBoundingClientRect();
+                    const ripple = document.createElement('div');
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.cssText = `
+                        position:absolute;
+                        border-radius:50%;
+                        transform:scale(0);
+                        animation:ripple 0.6s linear;
+                        pointer-events:none;
+                        width:${size}px;
+                        height:${size}px;
+                        left:${e.clientX - rect.left - size/2}px;
+                        top:${e.clientY - rect.top - size/2}px;
+                        background:${document.body.classList.contains('light-mode') ? 'rgba(26,26,26,0.2)' : 'rgba(255,255,255,0.3)'};
+                    `;
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 600);
+                    // 跳转
+                    window.location.href = this.dataset.url;
+                });
+                section.appendChild(btn);
+            }
+        }
+
+        // 页面加载完成后执行所有初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDateDisplay();
+            setupThemeToggle();
+            setupDayButtons();
+            setInterval(updateDateDisplay, 86400000);
+        });
+    </script>
+</body>
+</html>

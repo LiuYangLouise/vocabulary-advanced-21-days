@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>登录 | Reborn新生留学高阶词汇</title>
+    <style>
+        * {margin: 0;padding: 0;box-sizing: border-box;font-family: "微软雅黑",sans-serif;}
+        body {background: #ffffff;text-align: center;padding-top: 120px;}
+        .box {width: 400px;margin: 0 auto;padding: 40px;border: 1px solid #eee;border-radius: 12px;}
+        h1 {font-size: 28px;margin-bottom: 30px;color: #222;}
+        #pwd {width: 100%;padding: 14px;font-size: 18px;border: 1px solid #ddd;border-radius: 6px;margin-bottom: 20px;}
+        #loginBtn {width: 100%;padding: 14px;font-size: 18px;background: #3366cc;color: white;border: none;border-radius: 6px;cursor: pointer;}
+        #loginBtn:hover {background: #2852a3;}
+        .error-msg {color: #cc3333;font-size: 14px;margin-top: 12px;display:none;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>Reborn新生留学 登录入口</h1>
+        <input type="password" id="pwd" placeholder="请输入访问密码" onkeydown="if(event.key==='Enter') verify()">
+        <button id="loginBtn" onclick="verify()">登录进入词汇系统</button>
+        <div class="error-msg" id="errorMsg">密码错误，请重新输入！</div>
+    </div>
+    <script>
+        const correctPassword = "reborn2026";
+
+        function verify() {
+            const inputPwd = document.getElementById("pwd").value;
+            const errorMsg = document.getElementById("errorMsg");
+
+            if (inputPwd === correctPassword) {
+                // 写入登录标记
+                sessionStorage.setItem("loginOk", "yes");
+                // 带参数跳转，告诉 index.html 登录成功
+                window.location.replace("index.html?login=ok");
+            } else {
+                errorMsg.style.display = "block";
+                document.getElementById("pwd").value = "";
+                document.getElementById("pwd").focus();
+            }
+        }
+
+        // 如果已经登录，直接跳转
+        if (sessionStorage.getItem("loginOk") === "yes") {
+            window.location.replace("index.html?login=ok");
+        }
+    </script>
+</body>
+</html>

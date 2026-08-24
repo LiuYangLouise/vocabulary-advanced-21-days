@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Reborn新生留学 · 高阶核心词汇 Day 16</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(165deg, #f0f7ea 0%, #dce8d0 100%);
+            padding: 1.5rem 1rem 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 560px;
+            width: 100%;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 360;
+            color: #1f4a2c;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+        .header h1 .highlight {
+            font-weight: 500;
+            color: #2d6b3e;
+        }
+        .header .sub {
+            font-size: 1.1rem;
+            color: #5a8a62;
+            font-weight: 300;
+            margin-top: 0.2rem;
+        }
+        .voice-bar {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.8rem;
+            margin: 0.2rem 0 0.6rem 0;
+            font-size: 0.9rem;
+            color: #4a7a55;
+        }
+        .voice-bar label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            cursor: pointer;
+        }
+        .voice-bar input[type="radio"] {
+            accent-color: #6a9a72;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .flip-container {
+            perspective: 1000px;
+            width: 100%;
+            margin: 0.8rem 0 1.2rem 0;
+        }
+        .flipper {
+            position: relative;
+            width: 100%;
+            transition: transform 0.45s ease;
+            transform-style: preserve-3d;
+        }
+        .flipper.flipped {
+            transform: rotateY(180deg);
+        }
+        .front,
+        .back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: relative;
+            width: 100%;
+            border-radius: 42px;
+            padding: 2.6rem 1.2rem;
+            background: #fcfff8;
+            border: 1px solid #e3f0da;
+            box-shadow: 0 10px 24px rgba(130, 160, 120, 0.13);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 230px;
+        }
+        .back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+            min-height: 230px;
+        }
+        .front .en-word {
+            font-size: 3.2rem;
+            font-weight: 370;
+            color: #1c4a2a;
+            line-height: 1.3;
+            text-align: center;
+            word-break: break-word;
+        }
+        .front .hint {
+            font-size: 0.9rem;
+            color: #99b99a;
+            margin-top: 0.6rem;
+        }
+        .back .back-en {
+            font-size: 2.4rem;
+            font-weight: 360;
+            color: #1c4a2a;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .back .back-ipa {
+            font-size: 1.3rem;
+            color: #7aa07e;
+            font-weight: 350;
+            margin-top: 0.2rem;
+            font-family: 'Times New Roman', serif;
+        }
+        .back .back-pos {
+            font-size: 1.1rem;
+            color: #6f9a77;
+            font-weight: 380;
+            margin-top: 0.3rem;
+        }
+        .back .back-ch {
+            font-size: 2rem;
+            font-weight: 340;
+            color: #2d6b40;
+            margin-top: 0.4rem;
+            text-align: center;
+            line-height: 1.4;
+        }
+        .back .back-example {
+            font-size: 0.95rem;
+            color: #6a8f72;
+            margin-top: 0.6rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 90%;
+            line-height: 1.5;
+        }
+        .nav-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.2rem 0 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-btn {
+            background: #f1fde9;
+            border: 1px solid #cde0c3;
+            border-radius: 60px;
+            padding: 0.65rem 2rem;
+            font-size: 1.1rem;
+            color: #295e36;
+            cursor: pointer;
+            transition: 0.12s;
+        }
+        .nav-btn:active {
+            transform: scale(0.94);
+        }
+        .nav-btn.speak-btn {
+            background: #dcefd0;
+            border-color: #aacaa0;
+            font-weight: 440;
+            padding: 0.65rem 1.8rem;
+        }
+        .nav-btn.speak-btn:active {
+            background: #c4dfb6;
+        }
+        .thumb-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0.8rem 0 0.6rem 0;
+        }
+        .thumb-header span {
+            font-size: 1.1rem;
+            color: #3d6d4b;
+            font-weight: 330;
+        }
+        .export-btn {
+            background: #dbeace;
+            border: 1px solid #adc9a2;
+            border-radius: 40px;
+            padding: 0.35rem 1.2rem;
+            font-size: 0.95rem;
+            color: #23562f;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .thumb-grid-container {
+            max-height: 260px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 20px;
+            padding: 0.2rem 0.2rem 0.4rem 0.2rem;
+            scrollbar-width: thin;
+            scrollbar-color: #b5d3ae #e8f3e0;
+        }
+        .thumb-grid-container::-webkit-scrollbar {
+            width: 5px;
+        }
+        .thumb-grid-container::-webkit-scrollbar-track {
+            background: #e8f3e0;
+            border-radius: 10px;
+        }
+        .thumb-grid-container::-webkit-scrollbar-thumb {
+            background: #b5d3ae;
+            border-radius: 10px;
+        }
+        .thumb-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            padding: 0.2rem;
+        }
+        .thumb-item {
+            background: #f9fff3;
+            border: 1px solid #dbefd0;
+            border-radius: 20px;
+            padding: 0.5rem 0.3rem 0.5rem 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            box-shadow: 0 2px 6px rgba(160, 180, 140, 0.08);
+            min-width: 0;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .thumb-item:hover {
+            background: #f2fce9;
+        }
+        .thumb-item input[type="checkbox"] {
+            width: 1.1rem;
+            height: 1.1rem;
+            accent-color: #86b07c;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .thumb-item label {
+            font-size: 0.85rem;
+            color: #2e623d;
+            font-weight: 420;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+            cursor: pointer;
+        }
+        .tip {
+            color: #799e7a;
+            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            text-align: center;
+        }
+        .word-counter {
+            text-align: center;
+            color: #5a8a62;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.6rem;
+            }
+            .front .en-word {
+                font-size: 2.6rem;
+            }
+            .back .back-en {
+                font-size: 2rem;
+            }
+            .back .back-ch {
+                font-size: 1.6rem;
+            }
+            .nav-btn {
+                padding: 0.5rem 1.4rem;
+                font-size: 1rem;
+            }
+            .thumb-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="highlight">Reborn新生留学</span> · 高阶核心词汇 <span style="color:#3d7a4a;">Day 16</span></h1>
+            <div class="sub">天天进步，每日新生</div>
+        </div>
+
+        <div class="voice-bar">
+            <span>发音：</span>
+            <label><input type="radio" name="voice" value="en-US" checked> 美音</label>
+            <label><input type="radio" name="voice" value="en-GB"> 英音</label>
+        </div>
+
+        <div class="word-counter">📚 共 <span id="totalCount">99</span> 个单词 · 当前 <span id="currentPos">1</span> / <span id="totalCount2">99</span></div>
+
+        <div class="flip-container" id="flipContainer">
+            <div class="flipper" id="flipper">
+                <div class="front" id="cardFront">
+                    <div class="en-word" id="mainEn">accommodate</div>
+                    <div class="hint">👆 点击卡片翻转</div>
+                </div>
+                <div class="back" id="cardBack"></div>
+            </div>
+        </div>
+
+        <div class="nav-row">
+            <button class="nav-btn" id="prevBtn">← 前</button>
+            <button class="nav-btn speak-btn" id="speakBtn">🔊 发音</button>
+            <button class="nav-btn" id="nextBtn">后 →</button>
+        </div>
+
+        <div class="thumb-header">
+            <span>📌 本日全部单词</span>
+            <button class="export-btn" id="exportBtn">📎 导出难词</button>
+        </div>
+        <div class="thumb-grid-container">
+            <div class="thumb-grid" id="thumbGrid"></div>
+        </div>
+        <div class="tip">✓ 点击卡片翻转 · 勾选方格标记难词</div>
+    </div>
+
+    <script>
+        // ========== Day 16 完整数据（99条） ==========
+        const allVocab = [
+            { en: "accommodate", ipa: "/əˈkɑːmədeɪt/", pos: "v.", ch: "容纳；适应", example: "The hotel can accommodate up to 200 guests.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "admit", ipa: "/ədˈmɪt/", pos: "v.", ch: "承认；准许进入", example: "He admitted making a mistake in the calculation.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "alter", ipa: "/ˈɔːltər/", pos: "v.", ch: "变更；改变", example: "She altered the dress to fit her better.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "anxiety", ipa: "/æŋˈzaɪəti/", pos: "n.", ch: "焦虑；挂念", example: "Test anxiety can affect a student's performance.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "artifact", ipa: "/ˈɑːrtɪfækt/", pos: "n.", ch: "人工制品；手工艺品", example: "The museum displays ancient artifacts from different civilizations.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "autobiography", ipa: "/ˌɔːtəbaɪˈɑːɡrəfi/", pos: "n.", ch: "自传", example: "She wrote an autobiography about her life as a scientist.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "bark", ipa: "/bɑːrk/", pos: "n./v.", ch: "树皮；吠叫", example: "The dog barked loudly at the stranger.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "bend", ipa: "/bend/", pos: "v./n.", ch: "弯曲；弯道", example: "He bent down to pick up the coin from the ground.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "bond", ipa: "/bɑːnd/", pos: "n.", ch: "纽带；债券", example: "The shared experience created a strong bond between the team members.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "broadcast", ipa: "/ˈbrɔːdkæst/", pos: "v./n.", ch: "广播；传播", example: "The news was broadcast live across the country.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "camel", ipa: "/ˈkæml/", pos: "n.", ch: "骆驼", example: "Camels are well-adapted to living in the desert.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "cartoon", ipa: "/kɑːrˈtuːn/", pos: "n.", ch: "漫画；动画片", example: "Children enjoy watching colorful cartoons on TV.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "census", ipa: "/ˈsensəs/", pos: "n.", ch: "人口普查", example: "The census is conducted every ten years to count the population.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "circuit", ipa: "/ˈsɜːrkɪt/", pos: "n.", ch: "电路；巡回", example: "A broken circuit caused the lights to fail.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "coincide", ipa: "/ˌkoʊɪnˈsaɪd/", pos: "v.", ch: "一致；重合", example: "Her birthday coincides with the National Day.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "compose", ipa: "/kəmˈpoʊz/", pos: "v.", ch: "组成；创作", example: "She composed a beautiful song for her friend's wedding.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "congestion", ipa: "/kənˈdʒestʃən/", pos: "n.", ch: "拥挤；充血", example: "Traffic congestion is a major problem in big cities.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "continuous", ipa: "/kənˈtɪnjuəs/", pos: "adj.", ch: "连续的；持续的", example: "Continuous rain caused the river to overflow.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "corrosion", ipa: "/kəˈroʊʒn/", pos: "n.", ch: "腐蚀；侵蚀", example: "Rust is a form of corrosion that affects metal.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "cube", ipa: "/kjuːb/", pos: "n.", ch: "立方体；立方", example: "The volume of a cube is calculated by multiplying length × width × height.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "decline", ipa: "/dɪˈklaɪn/", pos: "v./n.", ch: "下降；衰退", example: "The number of wild birds has declined due to habitat loss.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "descend", ipa: "/dɪˈsend/", pos: "v.", ch: "下降；遗传", example: "The hikers descended the mountain carefully.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "dioxide", ipa: "/daɪˈɑːksaɪd/", pos: "n.", ch: "二氧化物", example: "Carbon dioxide is a gas produced by human activities.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "disturb", ipa: "/dɪˈstɜːrb/", pos: "v.", ch: "打扰；扰乱", example: "Please don't disturb the students while they are taking the exam.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "dull", ipa: "/dʌl/", pos: "adj.", ch: "单调的；迟钝的", example: "The movie was so dull that he fell asleep.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "eligible", ipa: "/ˈelɪdʒəbl/", pos: "adj.", ch: "有资格的", example: "Students over 18 are eligible to vote in the election.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "engage", ipa: "/ɪnˈɡeɪdʒ/", pos: "v.", ch: "从事；订婚", example: "She engaged in volunteer work during her summer vacation.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "erode", ipa: "/ɪˈroʊd/", pos: "v.", ch: "侵蚀；腐蚀", example: "Wind and water erode the rocks over time.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "exocrine", ipa: "/ˈeksəkrɪn/", pos: "adj.", ch: "外分泌的", example: "Exocrine glands secrete substances like sweat and digestive enzymes.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "fair", ipa: "/fer/", pos: "n./adj.", ch: "集市；公平的", example: "The county fair has rides, games, and food stalls.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "finish", ipa: "/ˈfɪnɪʃ/", pos: "v./n.", ch: "完成；结尾", example: "He finished his homework before dinner.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "fluid", ipa: "/ˈfluːɪd/", pos: "n./adj.", ch: "流体；流动的", example: "Water is a common fluid used in many industrial processes.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "friction", ipa: "/ˈfrɪkʃn/", pos: "n.", ch: "摩擦；冲突", example: "Friction between the two groups led to a heated debate.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "generalization", ipa: "/ˌdʒenrələˈzeɪʃn/", pos: "n.", ch: "概括；归纳", example: "Making generalizations about a culture can be misleading.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "glaze", ipa: "/ɡleɪz/", pos: "v./n.", ch: "上釉；釉料", example: "The potter glazed the ceramic bowl before firing it.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "hammer", ipa: "/ˈhæmər/", pos: "n./v.", ch: "锤子；锤打", example: "He used a hammer to fix the loose nail.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "height", ipa: "/haɪt/", pos: "n.", ch: "高度；身高", example: "What is the height of the tallest building in the city?", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "hook", ipa: "/hʊk/", pos: "n./v.", ch: "钩子；钩住", example: "She hung her coat on the hook by the door.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "ignorant", ipa: "/ˈɪɡnərənt/", pos: "adj.", ch: "无知的；愚昧的", example: "Being ignorant of the law is not an excuse for breaking it.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "impose", ipa: "/ɪmˈpoʊz/", pos: "v.", ch: "强加；征收", example: "The government imposed a new tax on imported goods.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "ingredient", ipa: "/ɪnˈɡriːdiənt/", pos: "n.", ch: "成分；要素", example: "Flour, sugar, and eggs are main ingredients in baking.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "institute", ipa: "/ˈɪnstɪtuːt/", pos: "n./v.", ch: "学院；建立", example: "The research institute focuses on environmental science.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "intoxication", ipa: "/ɪnˌtɑːksɪˈkeɪʃn/", pos: "n.", ch: "中毒；陶醉", example: "Alcohol intoxication can lead to serious health problems.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "jaw", ipa: "/dʒɔː/", pos: "n.", ch: "颌；下巴", example: "She hurt her jaw when she fell off the bike.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "lace", ipa: "/leɪs/", pos: "n./v.", ch: "蕾丝；鞋带；系带", example: "The dress was decorated with delicate lace.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "leisure", ipa: "/ˈliːʒər/", pos: "n.", ch: "空闲；安逸", example: "Reading is her favorite leisure activity.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "lyric", ipa: "/ˈlɪrɪk/", pos: "n.", ch: "抒情诗；歌词", example: "The lyrics of the song express feelings of love and loss.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "marrow", ipa: "/ˈmæroʊ/", pos: "n.", ch: "骨髓；精髓", example: "Bone marrow produces blood cells in the body.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "merciless", ipa: "/ˈmɜːrsɪləs/", pos: "adj.", ch: "冷酷无情的", example: "The merciless storm destroyed many homes and farms.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "miniature", ipa: "/ˈmɪnətʃər/", pos: "adj./n.", ch: "小型的；缩微模型", example: "She collected miniature dolls from different countries.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "monster", ipa: "/ˈmɑːnstər/", pos: "n.", ch: "怪物；巨兽", example: "The movie tells a story about a monster living in the ocean.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "naked", ipa: "/ˈneɪkɪd/", pos: "adj.", ch: "裸体的；无遮蔽的", example: "The tree stood naked in winter without leaves.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "nitrogen", ipa: "/ˈnaɪtrədʒən/", pos: "n.", ch: "氮", example: "Nitrogen is a major component of the Earth's atmosphere.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "observatory", ipa: "/əbˈzɜːrvətɔːri/", pos: "n.", ch: "天文台；气象台", example: "Astronomers use the observatory to study stars and planets.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "optical", ipa: "/ˈɑːptɪkl/", pos: "adj.", ch: "光学的；视觉的", example: "Optical illusions can trick the brain into seeing things that aren't real.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "outweigh", ipa: "/ˌaʊtˈweɪ/", pos: "v.", ch: "比......重；胜过", example: "The benefits of exercise outweigh the risks of not doing it.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "parasite", ipa: "/ˈpærəsaɪt/", pos: "n.", ch: "寄生虫；寄生生物", example: "Mosquitoes can be parasites that transmit diseases.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "penchant", ipa: "/ˈpentʃənt/", pos: "n.", ch: "嗜好；倾向", example: "He has a penchant for collecting vintage stamps.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "petroleum", ipa: "/pəˈtroʊliəm/", pos: "n.", ch: "石油", example: "Petroleum is used to make gasoline, plastic, and many other products.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "plank", ipa: "/plæŋk/", pos: "n./v.", ch: "木板；铺板", example: "They built a bridge using wooden planks.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "polygon", ipa: "/ˈpɑːliɡɑːn/", pos: "n.", ch: "多边形", example: "A triangle is a polygon with three sides.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "praise", ipa: "/preɪz/", pos: "v./n.", ch: "赞美；表扬", example: "The teacher praised her for her excellent performance in the exam.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "prevent", ipa: "/prɪˈvent/", pos: "v.", ch: "预防；阻止", example: "Wearing a seatbelt can prevent serious injuries in a car accident.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "profit", ipa: "/ˈprɑːfɪt/", pos: "n./v.", ch: "利润；获利", example: "The company made a large profit from its new product.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "protein", ipa: "/ˈproʊtiːn/", pos: "n.", ch: "蛋白质", example: "Fish and meat are good sources of protein.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "quadrilateral", ipa: "/ˌkwɑːdrɪˈlætərəl/", pos: "n./adj.", ch: "四边形（的）", example: "A square is a regular quadrilateral with four equal sides.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "random", ipa: "/ˈrændəm/", pos: "adj.", ch: "随机的；任意的", example: "The teacher chose a random student to answer the question.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "recede", ipa: "/rɪˈsiːd/", pos: "v.", ch: "后退；减弱", example: "The tide receded, leaving seashells on the beach.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "refreshing", ipa: "/rɪˈfreʃɪŋ/", pos: "adj.", ch: "令人耳目一新的", example: "A cold drink on a hot day is very refreshing.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "religion", ipa: "/rɪˈlɪdʒən/", pos: "n.", ch: "宗教；信仰", example: "People have different religions and cultural beliefs.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "representation", ipa: "/ˌreprɪzenˈteɪʃn/", pos: "n.", ch: "代表；表现", example: "The painting is a representation of rural life.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "restore", ipa: "/rɪˈstɔːr/", pos: "v.", ch: "恢复；修复", example: "The old building was restored to its original beauty.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "ridge", ipa: "/rɪdʒ/", pos: "n.", ch: "山脊；屋脊", example: "They walked along the mountain ridge to enjoy the view.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "routine", ipa: "/ruːˈtiːn/", pos: "n./adj.", ch: "常规；惯例；日常的", example: "Her morning routine includes exercise and a healthy breakfast.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "saturated", ipa: "/ˈsætʃəreɪtɪd/", pos: "adj.", ch: "饱和的；浸透的", example: "The rainy season left the soil saturated with water.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "search", ipa: "/sɜːrtʃ/", pos: "v./n.", ch: "搜索；探求", example: "They conducted a search for the missing keys in the classroom.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "serene", ipa: "/səˈriːn/", pos: "adj.", ch: "宁静的；安详的", example: "The serene lake provided a peaceful backdrop for the picnic.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "shore", ipa: "/ʃɔːr/", pos: "n.", ch: "岸；海滨", example: "We walked along the shore and collected seashells.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "sketch", ipa: "/sketʃ/", pos: "n./v.", ch: "草图；素描", example: "He made a quick sketch of the landscape before painting.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "soldier", ipa: "/ˈsoʊldʒər/", pos: "n.", ch: "军人；士兵", example: "Soldiers work hard to protect their country.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "spectacle", ipa: "/ˈspektəkl/", pos: "n.", ch: "奇观；景象", example: "The fireworks display was a breathtaking spectacle.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "spur", ipa: "/spɜːr/", pos: "n./v.", ch: "马刺；刺激", example: "The promise of a reward spurred him to work harder.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "stature", ipa: "/ˈstætʃər/", pos: "n.", ch: "身高；才干", example: "She gained international stature as a leading scientist.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "storage", ipa: "/ˈstɔːrɪdʒ/", pos: "n.", ch: "贮藏；存储", example: "The warehouse has plenty of storage space for goods.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "stub", ipa: "/stʌb/", pos: "n.", ch: "残余部分；票根", example: "He kept the ticket stub as a memory of the concert.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "sufficient", ipa: "/səˈfɪʃnt/", pos: "adj.", ch: "充分的；足够的", example: "Is there sufficient food for everyone at the party?", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "surplus", ipa: "/ˈsɜːrpləs/", pos: "n./adj.", ch: "剩余（的）", example: "The country has a surplus of wheat and exports it to other nations.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "synchronous", ipa: "/ˈsɪŋkrənəs/", pos: "adj.", ch: "同时的；同步的", example: "The dancers moved in synchronous rhythm with the music.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "technical", ipa: "/ˈteknɪkl/", pos: "adj.", ch: "技术的；专门的", example: "Technical skills are essential for working in the IT industry.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "territory", ipa: "/ˈterətɔːri/", pos: "n.", ch: "领土；领域", example: "The bird defends its territory from other birds.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "thrust", ipa: "/θrʌst/", pos: "v./n.", ch: "推挤；推力", example: "The engine's thrust propelled the rocket into space.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "topic", ipa: "/ˈtɑːpɪk/", pos: "n.", ch: "主题；话题", example: "The essay's topic is about the impact of social media on youth.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "transformation", ipa: "/ˌtrænsfərˈmeɪʃn/", pos: "n.", ch: "转变；变形", example: "The caterpillar's transformation into a butterfly is amazing.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "triumph", ipa: "/ˈtraɪʌmf/", pos: "n./v.", ch: "胜利；成功", example: "Their team achieved triumph in the national competition.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "typical", ipa: "/ˈtɪpɪkl/", pos: "adj.", ch: "典型的；有代表性的", example: "A typical day for her includes studying and exercising.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "urban", ipa: "/ˈɜːrbən/", pos: "adj.", ch: "城市的", example: "Urban areas have more job opportunities than rural areas.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "vast", ipa: "/væst/", pos: "adj.", ch: "广大的；巨大的", example: "The vast desert stretched out as far as the eye could see.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "violent", ipa: "/ˈvaɪələnt/", pos: "adj.", ch: "猛烈的；暴力的", example: "Violent storms can cause serious damage to buildings.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "warfare", ipa: "/ˈwɔːrfer/", pos: "n.", ch: "战争；冲突", example: "Technology has changed the nature of warfare in modern times.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "willow", ipa: "/ˈwɪloʊ/", pos: "n.", ch: "柳树", example: "Willow trees sway gently in the spring breeze.", mainCat: "21天核心词", subCat: "Day 16", type: "core" },
+            { en: "zone", ipa: "/zoʊn/", pos: "n.", ch: "地带；区域", example: "This is a no-smoking zone, so please put out your cigarette.", mainCat: "21天核心词", subCat: "Day 16", type: "core" }
+        ];
+
+        // ============================================================
+        //  应用逻辑
+        // ============================================================
+        let currentWords = allVocab;
+        let currentIndex = 0;
+        let difficultSet = new Set();
+
+        const flipper = document.getElementById('flipper');
+        const mainEn = document.getElementById('mainEn');
+        const cardBack = document.getElementById('cardBack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const speakBtn = document.getElementById('speakBtn');
+        const thumbGrid = document.getElementById('thumbGrid');
+        const exportBtn = document.getElementById('exportBtn');
+        const totalCount = document.getElementById('totalCount');
+        const totalCount2 = document.getElementById('totalCount2');
+        const currentPos = document.getElementById('currentPos');
+
+        function refreshCard() {
+            if (currentWords.length === 0 || currentIndex < 0) {
+                mainEn.textContent = '无';
+                cardBack.innerHTML = '';
+                return;
+            }
+            const w = currentWords[currentIndex];
+            mainEn.textContent = w.en;
+            currentPos.textContent = currentIndex + 1;
+
+            let html = `<div class="back-en">${w.en}</div>`;
+            if (w.ipa) html += `<div class="back-ipa">${w.ipa}</div>`;
+            if (w.pos) html += `<div class="back-pos">${w.pos}</div>`;
+            if (w.ch) html += `<div class="back-ch">${w.ch}</div>`;
+            if (w.example) html += `<div class="back-example">📖 ${w.example}</div>`;
+            cardBack.innerHTML = html;
+            flipper.classList.remove('flipped');
+        }
+
+        function renderThumbnails() {
+            thumbGrid.innerHTML = '';
+            if (currentWords.length === 0) return;
+            currentWords.forEach((w, idx) => {
+                const key = `${w.en}|${w.ch || ''}`;
+                const div = document.createElement('div');
+                div.className = 'thumb-item';
+                const isChecked = difficultSet.has(key) ? 'checked' : '';
+                div.innerHTML = `
+                    <input type="checkbox" class="diff-check" data-key="${key}" ${isChecked}>
+                    <label>${w.en}</label>
+                `;
+                div.addEventListener('click', (e) => {
+                    if (e.target.tagName !== 'INPUT') {
+                        currentIndex = idx;
+                        refreshCard();
+                        document.querySelectorAll('.thumb-item').forEach(el => el.style.background = '#f9fff3');
+                        div.style.background = '#d4ebc5';
+                    }
+                });
+                const chk = div.querySelector('.diff-check');
+                chk.addEventListener('change', (e) => {
+                    e.stopPropagation();
+                    const k = e.target.dataset.key;
+                    e.target.checked ? difficultSet.add(k) : difficultSet.delete(k);
+                });
+                thumbGrid.appendChild(div);
+            });
+            const items = thumbGrid.querySelectorAll('.thumb-item');
+            if (items[currentIndex]) {
+                items[currentIndex].style.background = '#d4ebc5';
+            }
+        }
+
+        function speakCurrentWord() {
+            if (currentWords.length === 0 || currentIndex < 0) return;
+            const w = currentWords[currentIndex];
+            const voiceRadio = document.querySelector('input[name="voice"]:checked');
+            const lang = voiceRadio ? voiceRadio.value : 'en-US';
+            if (!window.speechSynthesis) {
+                alert('您的浏览器不支持语音合成功能，请使用最新版 Chrome 或 Edge。');
+                return;
+            }
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(w.en);
+            utterance.lang = lang;
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            const voices = window.speechSynthesis.getVoices();
+            const matched = voices.find(v => v.lang.startsWith(lang));
+            if (matched) utterance.voice = matched;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function exportDifficult() {
+            const selected = allVocab.filter(v => {
+                const key = `${v.en}|${v.ch || ''}`;
+                return difficultSet.has(key);
+            });
+            if (selected.length === 0) {
+                alert('您还没有勾选任何难词');
+                return;
+            }
+            let csv = "英文,词性,中文,例句\n";
+            selected.forEach(w => {
+                csv += `"${w.en}","${w.pos || ''}","${w.ch || ''}","${w.example || ''}"\n`;
+            });
+            const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = "高阶难词表_Day16.csv";
+            link.click();
+        }
+
+        flipper.addEventListener('click', () => {
+            flipper.classList.toggle('flipped');
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentWords.length === 0 || currentIndex < 0) return;
+            currentIndex = (currentIndex - 1 + currentWords.length) % currentWords.length;
+            refreshCard();
+            renderThumbnails();
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentWords.length === 0 || currentIndex < 0) return;
+            currentIndex = (currentIndex + 1) % currentWords.length;
+            refreshCard();
+            renderThumbnails();
+        });
+
+        speakBtn.addEventListener('click', speakCurrentWord);
+        exportBtn.addEventListener('click', exportDifficult);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+            if (e.key === 'ArrowLeft') { prevBtn.click();
+                e.preventDefault(); }
+            if (e.key === 'ArrowRight') { nextBtn.click();
+                e.preventDefault(); }
+            if (e.key === ' ' || e.key === 'Space') { e.preventDefault();
+                speakBtn.click(); }
+        });
+
+        // 初始化
+        totalCount.textContent = allVocab.length;
+        totalCount2.textContent = allVocab.length;
+        refreshCard();
+        renderThumbnails();
+
+        console.log(`✅ Reborn新生留学 · 高阶核心词汇 Day 16 已加载，共 ${allVocab.length} 个单词`);
+        console.log('💡 键盘: ← → 翻词，空格键 发音');
+    </script>
+</body>
+</html>
